@@ -1,10 +1,16 @@
 package com.smart.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +28,13 @@ public class Contact {
 	private String image;
 	@Column(length = 50000)
 	private String description;
+	
+	
+	
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Contact> contacts=new ArrayList<>();
+	
 	public String getcId() {
 		return cId;
 	}
@@ -82,6 +95,9 @@ public class Contact {
 		this.image = image;
 		this.description = description;
 	}
+	
+	
+	
 	public Contact() {
 		super();
 		// TODO Auto-generated constructor stub
